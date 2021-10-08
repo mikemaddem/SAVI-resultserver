@@ -1,0 +1,1 @@
+from .resultserver import app
