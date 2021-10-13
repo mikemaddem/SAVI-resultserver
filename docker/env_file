@@ -1,0 +1,6 @@
+# Ballotbox environment variables
+# All variables can also be defined in config.py or secret_config.py
+
+
+# Publicly accessible URL for ballot server application
+#BALLOTSERVER_URL="http://localhost:8000"
