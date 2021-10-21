@@ -16,7 +16,7 @@ def runserver(host_address="0.0.0.0", port=5002, debug=False, key: str=None, cer
         print("Both cert and key required if one presented")
         exit(1)
     
-    app.run(debug=debug, host=host_address, port=port)
+    app.run(debug=debug, host=host_address, port=port, keyfile=key, certfile=cert)
 
 
 if __name__ == "__main__":
