@@ -3,5 +3,8 @@
 # app/resultserver.py: 1
 Quart == 0.15.1
 
+# app/resultserver.py: 2
+quart_cors == 0.5.0
+
 # app/ballotserver_utils.py: 1,4
 requests == 2.23.0
