@@ -1,5 +1,4 @@
-from quart import Quart, redirect, render_template, request, url_for
-from quart.ctx import after_this_websocket
+from quart import Quart, render_template, request
 
 from .ballotserver_utils import challenge_ballot, get_election_results
 
@@ -10,12 +9,12 @@ app = Quart(__name__)
 @app.route("/")
 async def home():
     """
-    Redirect to the results page
+    Home page, welcome
 
     Returns:
-        redirect to the results page
+        Rendered template of homepage
     """
-    return redirect(url_for('results'))
+    return await render_template('home.html')
 
 
 @app.route("/results")
@@ -46,7 +45,6 @@ async def challenge():
             verification_code = form["verification_code"]
             challenged = challenge_ballot(verification_code)
             if challenged:
-                print(challenged)
                 return await render_template("challenge.html", ballot=challenged)
             else:
                 return await render_template("challenge.html", error="Verification code does not match a spoiled ballot")

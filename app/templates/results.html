@@ -5,9 +5,10 @@
 {% block main %}
 <div class="container">
 {% for contest in results["contests"] %}
-    <div class="contest" id="{{ contest['contest'] }}">
+    <h1>{{ contest["contest"] }}</h1>
+    <div class="contest-container" id="{{ contest['contest'] }}">
     {% for selection in contest["selections"] %}
-        <div>
+        <div class="candidate-container">
             <h2>{{ selection["selection"] }}</h2>
             <p>votes: {{ selection["tally"] }}</p>
         </div>    

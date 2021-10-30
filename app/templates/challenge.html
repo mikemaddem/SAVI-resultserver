@@ -5,23 +5,23 @@
 {% block main %}
 <div class="container">
     <form id="challenge-form" action="{{ url_for('challenge') }}" method="POST">
-        <label class="form-label" for="verification_code">Verification Code</label><br>
-        <input class="form-input" type="text", name="verification_code" placeholder="verification_code" required><br>
+        <input class="form-input" type="text", name="verification_code" placeholder="verification_code" required>
         <input class="form-submit" type="submit" value="Challenge">
     </form>
     {% if ballot %}
-    <div id="ballot-container">
+    <h1>{{ ballot["ballot_id"] }}</h1>
     {% for contest in ballot["contests"] %}
+    <div class="contest-container">
         <div class="ballot-selection" id="{{ contest['object_id'] }}">
             <h2>{{ contest["object_id"] }}</h2>
             {% for selection in contest["ballot_selections"] %}
             <p>{{ selection["object_id"] }}</p>
             {% endfor %}
         </div>
-    {% endfor %}
     </div>
+    {% endfor %}
     {% elif error %}
-    <div class="error">{{ error }}</div>
+    <div class="alert">{{ error }}</div>
     {% endif %}
 </div>
 {% endblock %}
