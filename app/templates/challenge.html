@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Challenge{% endblock %}
+
+{% block main %}
+<div class="container">
+    <form id="challenge-form" action="{{ url_for('challenge') }}" method="POST">
+        <label class="form-label" for="verification_code">Verification Code</label><br>
+        <input class="form-input" type="text", name="verification_code" placeholder="verification_code" required><br>
+        <input class="form-submit" type="submit" value="Challenge">
+    </form>
+    {% if ballot %}
+    <div id="ballot-container">
+    {% for contest in ballot["contests"] %}
+        <div class="ballot-selection" id="{{ contest['object_id'] }}">
+            <h2>{{ contest["object_id"] }}</h2>
+            {% for selection in contest["ballot_selections"] %}
+            <p>{{ selection["object_id"] }}</p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
+    {% elif error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+</div>
+{% endblock %}

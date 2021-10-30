@@ -1,6 +1,7 @@
-from quart import Quart, abort, redirect, render_template, url_for
+from quart import Quart, redirect, render_template, request, url_for
+from quart.ctx import after_this_websocket
 
-from .ballotserver_utils import get_election_results
+from .ballotserver_utils import challenge_ballot, get_election_results
 
 
 app = Quart(__name__)
@@ -29,7 +30,25 @@ async def results():
     return await render_template('results.html', results=results)
 
 
-@app.route("/challenge")
+@app.route("/challenge", methods=["GET", "POST"])
 async def challenge():
-    # TODO
-    abort(501)
+    """
+    Querry the ballotserver by verification code to challenge a spoiled ballot
+
+    Returns:
+        Rendered template of challenged ballot or blank if failed
+    """
+    if request.method == "GET":
+        return await render_template("challenge.html")
+    elif request.method == "POST":
+        form = await request.form
+        try:
+            verification_code = form["verification_code"]
+            challenged = challenge_ballot(verification_code)
+            if challenged:
+                print(challenged)
+                return await render_template("challenge.html", ballot=challenged)
+            else:
+                return await render_template("challenge.html", error="Verification code does not match a spoiled ballot")
+        except KeyError:
+            return await render_template("challenge.html", error="Verification code is required")
