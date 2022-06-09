@@ -13,6 +13,8 @@
     <a class="link-button" id="home-nav" href="{{ url_for('home') }}">Home</a>
     <a class="link-button" id="results-nav" href="{{ url_for('results') }}">Results</a>
     <a class="link-button" id="challenge-nav" href="{{ url_for('challenge') }}">Challenge</a>
+    <a class="link-button" id="received-hashes" href="{{ url_for('received_hashes') }}">Received Hashes</a>
+    <a class="link-button" id="counted-hashes" href="{{ url_for('counted_hashes') }}">Counted Hashes</a>
   </span>
   <main>
     {% block main %}{% endblock %}

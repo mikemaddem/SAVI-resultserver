@@ -64,4 +64,10 @@ def get_election_results() -> dict:
     Returns:
         JSON data received from querying the ballotserver results endpoint
     """
-    return get_from_ballotserver("/election/result")    
+    return get_from_ballotserver("/election/result")
+
+def get_received_hashes() -> dict:
+    return get_from_ballotserver("/ballot/hashes")
+
+def get_counted_hashes() -> dict:
+    return get_from_ballotserver("/election/hashes")

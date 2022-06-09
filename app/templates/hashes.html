@@ -1,19 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Results{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block main %}
 <div class="container">
-{% for contest in results["contests"] %}
-    <h1>{{ contest["contest"] }}</h1>
-    <div class="contest-container" id="{{ contest['contest'] }}">
-    {% for selection in contest["selections"] %}
-        <div class="candidate-container">
-            <h2>{{ selection["selection"] }}</h2>
-            <p>votes: {{ selection["tally"] }}</p>
-        </div>    
-    {% endfor %}
-    </div>
+<ul>
+{% for hash in hashes["hashes"] %}
+    <li>{{ hash }}</li>
 {% endfor %}
+</ul>
 </div>
 {% endblock %}

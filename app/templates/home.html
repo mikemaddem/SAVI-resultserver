@@ -7,5 +7,7 @@
     <p>Welcome to the election result viewing site.</p>
     <p><a href="{{ url_for('challenge') }}">Challenge</a> a spoiled ballot</p>
     <p>View election <a href="{{ url_for('results') }}">results</a></p>
+    <p>View <a href="{{ url_for('received_hashes') }}">received hashes</a></p>
+    <p>View <a href="{{ url_for('counted_hashes') }}">counted hashes</a></p>
 </div>
 {% endblock %}

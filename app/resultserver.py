@@ -1,6 +1,6 @@
 from quart import Quart, render_template, request
 
-from .ballotserver_utils import challenge_ballot, get_election_results
+from .ballotserver_utils import challenge_ballot, get_election_results, get_counted_hashes, get_received_hashes
 
 
 app = Quart(__name__)
@@ -27,6 +27,16 @@ async def results():
     """
     results = get_election_results()
     return await render_template('results.html', results=results)
+
+@app.route("/received_hashes")
+async def received_hashes():
+    hashes = get_received_hashes()
+    return await render_template("hashes.html", title="Received Hashes", hashes=hashes)
+
+@app.route("/counted_hashes")
+async def counted_hashes():
+    hashes = get_counted_hashes()
+    return await render_template("hashes.html", title="Counted Hashes", hashes=hashes)
 
 
 @app.route("/challenge", methods=["GET", "POST"])
